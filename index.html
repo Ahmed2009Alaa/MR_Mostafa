@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مستر مصطفى يوسف — The Best of All in Mathematics</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi+Ink&family=El+Messiri:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --text: #f2f4f8;
+            --muted: #a7b3c7;
+            --card: #ffffff0d;
+            --radius: 20px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, .25);
+            --bg-gradient: linear-gradient(135deg, #7b1fa2, #1976d2, #00897b, #f57c00);
+            --bg-gradient-dark: linear-gradient(135deg, #0d0d0d, #1c1c1c, #2c2c2c);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Amiri', 'El Messiri', 'Reem Kufi Ink', serif;
+            color: var(--text);
+            background: var(--bg-gradient);
+            background-size: 300% 300%;
+            animation: gradientMove 18s ease infinite;
+            overflow-x: hidden;
+            transition: background 1s;
+        }
+
+        body.dark {
+            background: var(--bg-gradient-dark);
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        canvas#particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: .25;
+        }
+
+        header {
+            position: relative;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #00000055;
+            backdrop-filter: blur(8px);
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Reem Kufi Ink', 'El Messiri', 'Amiri';
+            background: linear-gradient(90deg, #ec407a, #42a5f5, #26a69a, #ffca28);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            animation: glowText 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowText {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #fff8, 0 0 20px #42a5f5
+            }
+
+            50% {
+                text-shadow: 0 0 20px #ffca28, 0 0 35px #ec407a
+            }
+        }
+
+        .tag {
+            font-size: 14px;
+            color: var(--muted);
+            font-weight: 500;
+            font-family: 'El Messiri', 'Amiri'
+        }
+
+        .hero {
+            padding: 50px 15px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+            margin: 0;
+            font-weight: 700;
+            font-family: 'Reem Kufi Ink', 'El Messiri';
+            background: linear-gradient(90deg, #ec407a, #42a5f5, #26a69a, #ffca28);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #fff;
+            display: inline-block;
+            width: 0;
+            animation: typewriter 6s steps(30, end) 1 forwards, blink .75s step-end infinite alternate, floating 3s ease-in-out infinite;
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent
+            }
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-8px)
+            }
+
+            100% {
+                transform: translateY(0)
+            }
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 16px auto 30px;
+            font-size: 17px;
+            font-family: 'Amiri', 'El Messiri';
+            color: var(--muted);
+            animation: fadeIn 3s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: .3s;
+            font-size: 15px;
+            font-family: 'Reem Kufi Ink', 'El Messiri';
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, #ec407a, #42a5f5, #26a69a, #ffca28);
+            color: #fff;
+            box-shadow: 0 3px 18px rgba(0, 0, 0, .25)
+        }
+
+        .btn.secondary {
+            background: #ffffff10;
+            color: #fff;
+            border: 1px solid #ffffff33
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .35)
+        }
+
+        .btn:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left .4s;
+        }
+
+        .btn:hover:after {
+            left: 100%;
+        }
+
+        .features {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+            transition: .4s;
+            font-family: 'Amiri', 'El Messiri';
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: .3s
+        }
+
+        .card:nth-child(2) {
+            animation-delay: .6s
+        }
+
+        .card:nth-child(3) {
+            animation-delay: .9s
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 1.2s
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.05)
+        }
+
+        .card h4 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            font-family: 'Reem Kufi Ink', 'El Messiri';
+            background: linear-gradient(90deg, #ec407a, #42a5f5, #26a69a, #ffca28);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                text-shadow: 0 0 5px #42a5f5
+            }
+
+            100% {
+                text-shadow: 0 0 25px #ffca28
+            }
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--muted);
+            font-family: 'Amiri', 'El Messiri'
+        }
+
+        footer {
+            padding: 25px 15px;
+            text-align: center;
+            color: var(--muted);
+            background: #00000044;
+            margin-top: 50px;
+            font-family: 'El Messiri', 'Amiri'
+        }
+
+        .toggle-mode {
+            margin-right: 10px;
+        }
+
+        section.hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top, #ffffff22, transparent 70%);
+            z-index: -1;
+            animation: glowPulse 6s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            from {
+                opacity: .5
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @media (max-width:600px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+    <header>
+        <div>
+            <h1>Mostafa Youssef — The Best of All</h1>
+            <div class="tag">مدرس رياضيات شبابي — حصص أونلاين</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <button class="btn secondary toggle-mode" id="toggleMode">🌙/☀️</button>
+            <a class="btn primary click-sound" href="https://wa.me/201007377906" target="_blank">🎧 احجز حصتك الآن</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2 id="typewriter">The Best of All ✨ في الرياضيات</h2>
+        <p>تعلم الرياضيات بأسلوب عصري، ممتع، ومناسب للشباب 🚀 — مع <b>مستر مصطفى يوسف</b> هتكتشف معنى مختلف للتعليم
+            أونلاين: شرح واضح، تفاعل مباشر، وتجربة مميزة.</p>
+        <div>
+            <a class="btn primary click-sound" href="https://wa.me/201007377906" target="_blank">🚀 انضم دلوقتي</a>
+            <a class="btn secondary click-sound" href="tel:+201007377906">📞 كلمنا مباشرة</a>
+        </div>
+        <div class="features">
+            <div class="card">
+                <h4>💻 أونلاين بالكامل</h4>
+                <p>اتعلم من أي مكان بجودة عالية.</p>
+            </div>
+            <div class="card">
+                <h4>🎮 شبابي وتفاعلي</h4>
+                <p>شرح فيه أمثلة وإضافات حديثة.</p>
+            </div>
+            <div class="card">
+                <h4>🕒 جدول مرن</h4>
+                <p>اختر الوقت اللي يناسبك.</p>
+            </div>
+            <div class="card">
+                <h4>🌟 The Best of All</h4>
+                <p>أسلوب مميز يخليك تحب الرياضيات.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>📱 0100 737 7906 — واتساب أو اتصال مباشر</p>
+        <p>© 2025 — Mostafa Youssef Online Math — The Best of All</p>
+    </footer>
+
+    <audio id="clickAudio" preload="auto">
+        <source
+            src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAeAAACABYXRvbQAAAA8AAAABAQAAAgACcQCAeAAACABhdXRob3IAAAAAAAALQXVkaW9UZXN0AAAAAAANZGF0YQAAAAEAAAAf//8AAABPbnM="
+            type="audio/mp3">
+    </audio>
+    <audio id="bgMusic" loop>
+        <source
+            src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADhgCAeAAACABYXRvbQAAAA8AAAABAQAAAgADhgCAeAAACABhdXRob3IAAAAAAAALQXVkaW9UZXN0AAAAAAANZGF0YQAAAAEAAAAf//8AAABPbnM="
+            type="audio/mp3">
+    </audio>
+    <button id="musicToggle" class="btn secondary"
+        style="position:fixed;bottom:20px;left:20px;z-index:10">🔊/🔇</button>
+
+    <script>
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        const colors = ["#ec407a", "#42a5f5", "#26a69a", "#ffca28"];
+        for (let i = 0; i < 120; i++) {
+            let c = colors[Math.floor(Math.random() * colors.length)];
+            particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2 + 1, dx: (Math.random() - 0.5) * .7, dy: (Math.random() - 0.5) * .7, color: c });
+        }
+        function draw() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { ctx.beginPath(); ctx.fillStyle = p.color; ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); p.x += p.dx; p.y += p.dy; if (p.x < 0 || p.x > canvas.width) p.dx *= -1; if (p.y < 0 || p.y > canvas.height) p.dy *= -1 }); requestAnimationFrame(draw); }
+        draw();
+
+        document.getElementById('toggleMode').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+        });
+
+        const heroText = document.querySelector('.hero h2');
+        document.addEventListener('mousemove', e => {
+            let moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+            let moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+            heroText.style.transform = `translate(${moveX}px,${moveY}px)`;
+        });
+
+        const clickAudio = document.getElementById('clickAudio');
+        document.querySelectorAll('.click-sound').forEach(btn => {
+            btn.addEventListener('click', () => {
+                clickAudio.currentTime = 0;
+                clickAudio.play();
+            });
+        });
+
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        musicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) { bgMusic.play(); } else { bgMusic.pause(); }
+        });
+
+        // Scroll animation
+        const cards = document.querySelectorAll('.card');
+        window.addEventListener('scroll', () => {
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
